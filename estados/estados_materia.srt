@@ -1,0 +1,84 @@
+1
+00:00:01,200 --> 00:00:04,800
+¿Por qué el hielo, el agua y el vapor son tan diferentes?
+
+2
+00:00:05,300 --> 00:00:08,300
+Para explicarlo usamos el modelo cinético-corpuscular.
+
+3
+00:00:08,300 --> 00:00:12,600
+La materia está formada por partículas muy pequeñas, con espacio vacío entre ellas,
+
+4
+00:00:12,600 --> 00:00:17,800
+que se mueven continuamente y se atraen entre sí.
+
+5
+00:00:18,300 --> 00:00:21,500
+En un sólido, las partículas están muy juntas y ordenadas.
+
+6
+00:00:21,500 --> 00:00:24,000
+No cambian de sitio: solo vibran en su posición.
+
+7
+00:00:24,000 --> 00:00:27,000
+Las fuerzas de atracción son muy fuertes,
+
+8
+00:00:27,000 --> 00:00:30,800
+por eso los sólidos tienen forma y volumen fijos.
+
+9
+00:00:31,300 --> 00:00:34,500
+En un líquido, las partículas siguen juntas, pero desordenadas.
+
+10
+00:00:34,500 --> 00:00:37,000
+Pueden deslizarse unas sobre otras: por eso los líquidos fluyen.
+
+11
+00:00:37,000 --> 00:00:40,000
+Las fuerzas de atracción son más débiles que en el sólido.
+
+12
+00:00:40,000 --> 00:00:43,800
+Los líquidos tienen volumen fijo, pero toman la forma del recipiente.
+
+13
+00:00:44,300 --> 00:00:47,500
+En un gas, las partículas están muy separadas.
+
+14
+00:00:47,500 --> 00:00:50,000
+Se mueven muy rápido y en todas direcciones, chocando entre sí y con las paredes.
+
+15
+00:00:50,000 --> 00:00:53,000
+Las fuerzas de atracción entre ellas son casi nulas.
+
+16
+00:00:53,000 --> 00:00:56,800
+Por eso un gas no tiene forma ni volumen fijos: ocupa todo el recipiente.
+
+17
+00:00:57,300 --> 00:00:59,500
+Si comparamos los tres estados…
+
+18
+00:00:59,500 --> 00:01:03,500
+al calentar, las partículas se mueven más rápido, se separan y pierden el orden.
+
+19
+00:01:03,500 --> 00:01:08,800
+Así una sustancia pasa de sólido a líquido (fusión) y de líquido a gas (vaporización).
+
+20
+00:01:09,300 --> 00:01:14,000
+En resumen: el estado de una sustancia depende de cómo están ordenadas sus partículas,
+
+21
+00:01:14,000 --> 00:01:19,800
+de cómo se mueven y de la fuerza con que se atraen.
+
