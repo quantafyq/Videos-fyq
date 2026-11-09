@@ -1,0 +1,116 @@
+1
+00:00:01,500 --> 00:00:05,800
+¿Qué tiene que pasar para que ocurra una reacción química?
+
+2
+00:00:06,300 --> 00:00:09,400
+En una reacción química los átomos se reorganizan.
+
+3
+00:00:09,400 --> 00:00:13,200
+Se rompen los enlaces de los reactivos y se forman enlaces nuevos en los productos.
+
+4
+00:00:13,200 --> 00:00:15,800
+Para eso, las partículas tienen que encontrarse.
+
+5
+00:00:16,300 --> 00:00:20,000
+Las partículas (átomos, moléculas o iones) están en continuo movimiento
+
+6
+00:00:20,000 --> 00:00:22,800
+y chocan entre sí millones de veces por segundo.
+
+7
+00:00:22,800 --> 00:00:25,800
+Para reaccionar, lo primero es que choquen.
+
+8
+00:00:26,300 --> 00:00:29,000
+Pero no todos los choques producen una reacción.
+
+9
+00:00:29,000 --> 00:00:32,800
+Para que un choque sea eficaz hacen falta dos condiciones.
+
+10
+00:00:33,300 --> 00:00:37,200
+Imagina dos moléculas, A₂ y B₂, que se acercan despacio.
+
+11
+00:00:37,200 --> 00:00:40,000
+Si chocan con poca energía, los enlaces no llegan a romperse:
+
+12
+00:00:40,000 --> 00:00:42,800
+rebotan y no hay reacción.
+
+13
+00:00:43,300 --> 00:00:46,000
+Ahora chocan rápido, con energía suficiente…
+
+14
+00:00:46,000 --> 00:00:49,000
+pero de punta: la orientación no es la adecuada.
+
+15
+00:00:49,000 --> 00:00:52,800
+Rebotan y tampoco hay reacción.
+
+16
+00:00:53,300 --> 00:00:55,000
+Con energía suficiente y la orientación adecuada…
+
+17
+00:00:55,000 --> 00:00:58,500
+se rompen los enlaces A–A y B–B y se forman dos enlaces A–B.
+
+18
+00:00:58,500 --> 00:01:03,800
+¡El choque es eficaz y se forma el producto!
+
+19
+00:01:04,300 --> 00:01:08,800
+La energía mínima que necesita el choque se llama energía de activación, Ea.
+
+20
+00:01:08,800 --> 00:01:13,000
+Es como una colina: si las partículas no tienen energía suficiente, no llegan a la cima y vuelven atrás.
+
+21
+00:01:13,000 --> 00:01:18,300
+Si la energía es igual o mayor que Ea, superan la barrera y se forman los productos.
+
+22
+00:01:18,800 --> 00:01:23,500
+Al aumentar la temperatura, las partículas se mueven más rápido.
+
+23
+00:01:23,500 --> 00:01:28,000
+Chocan más veces y con más energía: hay más choques eficaces
+
+24
+00:01:28,000 --> 00:01:33,300
+y la reacción es más rápida. (Las moléculas moradas son el producto AB).
+
+25
+00:01:33,800 --> 00:01:39,000
+Al aumentar la concentración hay más partículas en el mismo volumen.
+
+26
+00:01:39,000 --> 00:01:46,300
+Hay más choques por segundo, más choques eficaces, y la reacción se acelera.
+
+27
+00:01:46,800 --> 00:01:49,500
+En resumen: una reacción química ocurre cuando las partículas chocan
+
+28
+00:01:49,500 --> 00:01:52,500
+con energía suficiente y con la orientación adecuada.
+
+29
+00:01:52,500 --> 00:01:58,300
+Más temperatura o más concentración significan más choques eficaces y una reacción más rápida.
+
