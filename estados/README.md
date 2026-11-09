@@ -26,3 +26,9 @@ python3 generar_video.py --preview 25  # PNG del segundo 25
 
 Nota: en el gas se han dibujado pocas partículas para que se vea el espacio
 vacío; en un gas real la separación es todavía mucho mayor.
+
+## Versión con voz
+
+`estados_materia_voz.mp4` es el mismo vídeo con narración sintética en español.
+Se genera con `python3 ../narrar.py estados --voz <carpeta de la voz>`
+(ver instrucciones en `narrar.py`).

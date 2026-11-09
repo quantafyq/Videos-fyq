@@ -45,3 +45,9 @@ cambiar y volver a generar el vídeo.
 - Preguntas para después del vídeo: ¿por qué se guardan los alimentos en la
   nevera? ¿Por qué arde antes la madera en virutas que un tronco? (superficie de
   contacto, otro factor que se puede introducir después).
+
+## Versión con voz
+
+`teoria_colisiones_voz.mp4` es el mismo vídeo con narración sintética en
+español. Se genera con `python3 ../narrar.py colisiones --voz <carpeta de la voz>`
+(ver instrucciones en `narrar.py`).
