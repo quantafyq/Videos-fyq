@@ -383,6 +383,8 @@ def render(T):
             f(cv, t, d)
             break
     draw_caption(cv, T)
+    # marca del canal en la esquina superior derecha
+    cv.text(1885, 42, "@quantafyq", 30, mix(BG, WHITE, 0.6), anchor="rm", bold=True)
     img = cv.final()
     for s, (d, _, _) in zip(STARTS, SCENES):
         if s <= T < s + d:
