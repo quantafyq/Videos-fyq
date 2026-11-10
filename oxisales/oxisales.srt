@@ -1,0 +1,260 @@
+1
+00:00:01,200 --> 00:00:05,800
+En este vídeo vas a aprender a formular y a nombrar oxisales.
+
+2
+00:00:06,300 --> 00:00:10,801
+Una oxisal se obtiene a partir de un oxoácido, como el ácido sulfúrico.
+
+3
+00:00:10,801 --> 00:00:16,827
+Si sustituimos sus hidrógenos por un metal, obtenemos una oxisal: el sulfato de cobre(II).
+
+4
+00:00:16,827 --> 00:00:21,964
+Las oxisales tienen tres elementos: un metal, un no metal y oxígeno.
+
+5
+00:00:21,964 --> 00:00:26,764
+Están formadas por un catión metálico y el anión que procede del oxoácido.
+
+6
+00:00:27,264 --> 00:00:31,601
+Para formular una oxisal primero tienes que saber de qué oxoácido procede.
+
+7
+00:00:31,601 --> 00:00:38,691
+El nombre del ácido depende del número de oxidación del no metal: hipo…oso, …oso, …ico y per…ico, de menor a mayor.
+
+8
+00:00:38,691 --> 00:00:44,083
+Si el no metal solo tiene dos números de oxidación, se usan …oso para el menor e …ico para el mayor.
+
+9
+00:00:44,583 --> 00:00:49,316
+Al quitarle los hidrógenos al ácido obtenemos el anión, que cambia de terminación.
+
+10
+00:00:49,316 --> 00:00:53,643
+La terminación –oso pasa a –ito, y la terminación –ico pasa a –ato.
+
+11
+00:00:53,643 --> 00:00:58,646
+Un truco para recordarlo: «cuando el oso toca el pito, Perico toca el silbato».
+
+12
+00:00:58,646 --> 00:01:02,912
+Los prefijos hipo– y per– se mantienen: hipoclorito, perclorato.
+
+13
+00:01:03,412 --> 00:01:07,612
+Estos son los aniones más habituales. Fíjate en su carga:
+
+14
+00:01:07,612 --> 00:01:12,310
+el anión tiene tantas cargas negativas como hidrógenos ha perdido el ácido.
+
+15
+00:01:12,310 --> 00:01:18,669
+Por ejemplo, el ácido sulfúrico tiene dos H, así que el sulfato tiene carga 2−.
+
+16
+00:01:18,669 --> 00:01:23,794
+El bromo y el yodo forman ácidos y aniones iguales que los del cloro: bromato, yodato…
+
+17
+00:01:24,294 --> 00:01:27,344
+Para formular una oxisal sigue cuatro pasos.
+
+18
+00:01:27,344 --> 00:01:30,380
+Uno: escribe el oxoácido del que procede.
+
+19
+00:01:30,380 --> 00:01:33,813
+Dos: quítale los hidrógenos para obtener el anión.
+
+20
+00:01:33,813 --> 00:01:37,211
+Tres: escribe el catión metálico con su carga.
+
+21
+00:01:37,211 --> 00:01:40,560
+Y cuatro: cruza las cargas y simplifica si se puede.
+
+22
+00:01:41,060 --> 00:01:43,793
+Primer ejemplo: nitrato de potasio.
+
+23
+00:01:43,793 --> 00:01:47,619
+Nitrato viene del ácido nítrico, HNO₃.
+
+24
+00:01:47,619 --> 00:01:52,584
+Al quitarle su único hidrógeno queda el anión nitrato, con una carga negativa.
+
+25
+00:01:52,584 --> 00:01:55,343
+El potasio forma el catión K⁺.
+
+26
+00:01:55,343 --> 00:02:00,527
+Las cargas se compensan una a una: la fórmula es KNO₃.
+
+27
+00:02:01,027 --> 00:02:04,146
+Segundo ejemplo: sulfato de hierro(III).
+
+28
+00:02:04,146 --> 00:02:08,589
+Sulfato viene del ácido sulfúrico, H₂SO₄.
+
+29
+00:02:08,589 --> 00:02:13,380
+Al quitarle sus dos hidrógenos, el sulfato queda con dos cargas negativas.
+
+30
+00:02:13,380 --> 00:02:16,798
+El número romano nos dice que el hierro tiene carga 3+.
+
+31
+00:02:17,298 --> 00:02:23,527
+Ahora cruzamos las cargas: el 3 del hierro pasa al sulfato y el 2 del sulfato pasa al hierro.
+
+32
+00:02:23,527 --> 00:02:30,559
+Resultado: Fe₂(SO₄)₃. El sulfato va entre paréntesis porque lleva subíndice.
+
+33
+00:02:31,059 --> 00:02:33,830
+Tercer ejemplo: carbonato de calcio.
+
+34
+00:02:33,830 --> 00:02:39,185
+Viene del ácido carbónico, H₂CO₃, así que el carbonato tiene dos cargas negativas.
+
+35
+00:02:39,185 --> 00:02:41,985
+El calcio forma el catión Ca²⁺.
+
+36
+00:02:42,485 --> 00:02:47,385
+Al cruzar las cargas nos queda un dos en cada lado.
+
+37
+00:02:47,385 --> 00:02:52,814
+Como los subíndices son iguales, se simplifican: la fórmula es CaCO₃.
+
+38
+00:02:52,814 --> 00:02:57,522
+Ojo: solo se simplifican los subíndices de fuera. Los del anión nunca cambian.
+
+39
+00:02:58,022 --> 00:03:01,290
+Para nombrar una oxisal hacemos el camino inverso.
+
+40
+00:03:01,290 --> 00:03:03,790
+Separa el metal del anión,
+
+41
+00:03:03,790 --> 00:03:06,290
+reconoce el anión a partir de su ácido,
+
+42
+00:03:06,290 --> 00:03:09,897
+calcula la carga del metal para que el compuesto sea neutro
+
+43
+00:03:09,897 --> 00:03:13,397
+y di primero el nombre del anión, después «de» y el nombre del metal.
+
+44
+00:03:13,897 --> 00:03:16,610
+Vamos a nombrar CuSO₄.
+
+45
+00:03:16,610 --> 00:03:20,275
+Separamos el metal, el cobre, del anión SO₄.
+
+46
+00:03:20,275 --> 00:03:26,087
+SO₄ procede del ácido sulfúrico: es el anión sulfato, con dos cargas negativas.
+
+47
+00:03:26,087 --> 00:03:30,292
+Para que el compuesto sea neutro, el cobre tiene que tener carga 2+.
+
+48
+00:03:30,292 --> 00:03:35,549
+Como el cobre puede actuar con +1 o +2, lo indicamos: sulfato de cobre(II).
+
+49
+00:03:36,049 --> 00:03:40,306
+Otro ejemplo: Fe(NO₂)₂.
+
+50
+00:03:40,306 --> 00:03:43,332
+Separamos el hierro del anión NO₂.
+
+51
+00:03:43,332 --> 00:03:48,557
+NO₂ procede del ácido nitroso: es el anión nitrito, con una carga negativa.
+
+52
+00:03:48,557 --> 00:03:53,267
+Hay dos nitritos, que suman dos cargas negativas, así que el hierro es 2+.
+
+53
+00:03:53,267 --> 00:03:57,067
+El nombre es nitrito de hierro(II).
+
+54
+00:03:57,567 --> 00:04:03,467
+Ahora practica tú. Formula el clorato de potasio.
+
+55
+00:04:03,467 --> 00:04:08,067
+Solución: KClO₃.
+
+56
+00:04:08,567 --> 00:04:14,467
+Nombra Al₂(SO₄)₃.
+
+57
+00:04:14,467 --> 00:04:20,451
+Solución: sulfato de aluminio. El aluminio solo tiene una carga, así que no lleva número romano.
+
+58
+00:04:20,951 --> 00:04:26,851
+Formula el hipoclorito de sodio.
+
+59
+00:04:26,851 --> 00:04:31,802
+Solución: NaClO. Es el componente principal de la lejía.
+
+60
+00:04:32,302 --> 00:04:38,202
+Nombra Ca₃(PO₄)₂.
+
+61
+00:04:38,202 --> 00:04:42,802
+Solución: fosfato de calcio.
+
+62
+00:04:43,302 --> 00:04:48,987
+En resumen: una oxisal está formada por un catión metálico y el anión de un oxoácido.
+
+63
+00:04:48,987 --> 00:04:52,877
+Al pasar del ácido al anión, oso cambia a ito e ico cambia a ato.
+
+64
+00:04:52,877 --> 00:04:57,308
+La carga del anión es igual al número de hidrógenos que ha perdido el ácido.
+
+65
+00:04:57,308 --> 00:05:01,663
+Cruza las cargas para formular, y para nombrar di el anión, «de» y el metal.
+

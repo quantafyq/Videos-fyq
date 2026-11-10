@@ -16,11 +16,17 @@ Uso:
     python3 narrar.py estados    --voz /ruta/vits-piper-es_ES-davefx-medium
 
 Genera <carpeta>/<video>_voz.mp4 (vídeo con voz y subtítulos incrustados).
+
+En oxisales y sales_acidas, para que la voz vaya sincronizada con la animación:
+    python3 narrar.py oxisales --voz ... --medir   # guarda oxisales/narracion.json
+    (cd oxisales && python3 generar_video.py)      # el vídeo se alarga donde haga falta
+    python3 narrar.py oxisales --voz ...           # añade la voz
 """
 
 import argparse
 import glob
 import importlib.util
+import json
 import os
 import re
 import subprocess
@@ -61,6 +67,8 @@ def main():
     ap.add_argument("carpeta", choices=["colisiones", "estados", "oxisales", "sales_acidas"])
     ap.add_argument("--voz", required=True, help="carpeta de la voz Piper")
     ap.add_argument("--velocidad", type=float, default=1.0)
+    ap.add_argument("--medir", action="store_true",
+                    help="solo mide cuánto dura cada frase y lo guarda en narracion.json")
     args = ap.parse_args()
 
     import sherpa_onnx
@@ -91,6 +99,13 @@ def main():
         samples = np.array(audio.samples, dtype=np.float32)
         dur = len(samples) / sr
         clips.append((t0, samples, txt))
+
+    if args.medir:
+        jp = os.path.join(HERE, args.carpeta, "narracion.json")
+        with open(jp, "w", encoding="utf-8") as fh:
+            json.dump({"durs": [round(len(c[1]) / sr, 3) for c in clips]}, fh)
+        print("duraciones guardadas en", jp)
+        return
 
     track = np.zeros(int((total + 1) * sr), dtype=np.float32)
     cursor = 0

@@ -17,7 +17,9 @@ es opcional y sirve para que la voz sintética lea bien las fórmulas.
 """
 
 import argparse
+import bisect
 import importlib.util
+import json
 import math
 import multiprocessing as mp
 import os
@@ -409,21 +411,48 @@ def end_scene(title, subtitle):
 # Render
 # --------------------------------------------------------------------------
 class Video:
+    """Si existe `narracion.json` (lo crea `narrar.py --medir`) con la duración
+    de cada frase hablada, cada tramo de narración se alarga lo necesario
+    para que la voz quepa, y la animación de ese tramo va más despacio."""
+
     def __init__(self, scenes, here, out_name):
-        self.scenes = scenes
         self.here = here
         self.out_name = out_name
+        durs = None
+        jp = os.path.join(here, "narracion.json")
+        if os.path.exists(jp):
+            with open(jp, encoding="utf-8") as fh:
+                durs = json.load(fh)["durs"]
+        self.scenes = []   # (duración nueva, función, narración, mapa de tiempo)
         self.starts = []
-        acc = 0.0
-        for d, _, _ in scenes:
-            self.starts.append(acc)
-            acc += d
-        self.total = acc
         self.caps = []
-        for (d, _, caps), s in zip(scenes, self.starts):
-            for k, c in enumerate(caps):
-                t1 = caps[k + 1][0] if k + 1 < len(caps) else d - 0.2
-                self.caps.append((s + c[0], s + t1, c[1]) + ((c[2],) if len(c) > 2 else ()))
+        acc, k = 0.0, 0
+        for d, f, caps in scenes:
+            old = [0.0] + [c[0] for c in caps] + [d]
+            new = [0.0, old[1] if caps else d]
+            for i in range(len(caps)):
+                seg = old[i + 2] - old[i + 1]
+                if durs is not None:
+                    seg = max(seg, durs[k + i] + 0.6)
+                new.append(new[-1] + seg)
+            dn = new[-1]
+            self.starts.append(acc)
+            self.scenes.append((dn, f, d, (new, old)))
+            for i, c in enumerate(caps):
+                t1 = new[i + 2] if i + 1 < len(caps) else dn - 0.2
+                self.caps.append((acc + new[i + 1], acc + t1, c[1]) + ((c[2],) if len(c) > 2 else ()))
+            k += len(caps)
+            acc += dn
+        self.total = acc
+
+    @staticmethod
+    def warp(t, maps):
+        new, old = maps
+        i = max(0, min(len(new) - 2, bisect.bisect_right(new, t) - 1))
+        n0, n1, o0, o1 = new[i], new[i + 1], old[i], old[i + 1]
+        if n1 <= n0:
+            return o0
+        return o0 + (t - n0) * (o1 - o0) / (n1 - n0)
 
     def draw_caption(self, cv, T):
         for c in self.caps:
@@ -440,14 +469,14 @@ class Video:
 
     def render(self, T):
         cv = Canvas()
-        for (d, f, _), s in zip(self.scenes, self.starts):
+        for (d, f, d0, maps), s in zip(self.scenes, self.starts):
             if s <= T < s + d:
-                f(cv, T - s, d)
+                f(cv, self.warp(T - s, maps), d0)
                 break
         self.draw_caption(cv, T)
         cv.text(1885, 42, "@quantafyq", 30, mix(BG, WHITE, 0.6), anchor="rm", bold=True)
         img = cv.final()
-        for s, (d, _, _) in zip(self.starts, self.scenes):
+        for s, (d, _, _, _) in zip(self.starts, self.scenes):
             if s <= T < s + d:
                 t = T - s
                 k = min(ramp(t, 0, 0.25), 1 - ramp(t, d - 0.25, d))

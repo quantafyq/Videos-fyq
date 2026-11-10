@@ -1,0 +1,248 @@
+1
+00:00:01,200 --> 00:00:05,800
+En este vídeo vas a aprender a formular y a nombrar sales ácidas.
+
+2
+00:00:06,300 --> 00:00:10,423
+El ácido carbónico, H₂CO₃, tiene dos hidrógenos.
+
+3
+00:00:10,423 --> 00:00:16,301
+Si le quitamos los dos, obtenemos el anión carbonato y una sal neutra: el carbonato de sodio.
+
+4
+00:00:16,301 --> 00:00:23,110
+Pero si solo le quitamos uno, el anión conserva un hidrógeno: es una sal ácida, el hidrogenocarbonato de sodio.
+
+5
+00:00:23,110 --> 00:00:27,680
+Por eso solo pueden formar sales ácidas los ácidos que tienen dos o más hidrógenos.
+
+6
+00:00:28,180 --> 00:00:33,636
+Para nombrarlas se pone la palabra hidrogeno delante del nombre del anión, todo junto.
+
+7
+00:00:33,636 --> 00:00:37,591
+Por ejemplo, HCO₃⁻ es el hidrogenocarbonato.
+
+8
+00:00:37,591 --> 00:00:41,591
+Si quedan dos hidrógenos se dice dihidrogeno: dihidrogenofosfato.
+
+9
+00:00:41,591 --> 00:00:47,564
+Quizá conozcas nombres antiguos como bicarbonato o carbonato ácido, pero hoy se usa hidrogenocarbonato.
+
+10
+00:00:48,064 --> 00:00:52,264
+Estos son los aniones ácidos más habituales.
+
+11
+00:00:52,264 --> 00:00:57,195
+Fíjate en la carga: es igual al número de hidrógenos que se han quitado al ácido.
+
+12
+00:00:57,195 --> 00:01:04,313
+Del ácido fosfórico salen dos: el dihidrogenofosfato, con carga 1−, y el hidrogenofosfato, con carga 2−.
+
+13
+00:01:04,313 --> 00:01:08,754
+El H₂S no es un oxoácido, pero también forma sales ácidas.
+
+14
+00:01:09,254 --> 00:01:11,499
+Para formular una sal ácida:
+
+15
+00:01:11,499 --> 00:01:13,604
+escribe el ácido de partida,
+
+16
+00:01:13,604 --> 00:01:16,305
+déjale los hidrógenos que indica el nombre,
+
+17
+00:01:16,305 --> 00:01:20,968
+recuerda que la carga del anión es igual al número de hidrógenos que has quitado,
+
+18
+00:01:20,968 --> 00:01:25,536
+y escribe el catión metálico y cruza las cargas, como en las oxisales.
+
+19
+00:01:26,036 --> 00:01:29,253
+Primer ejemplo: hidrogenocarbonato de sodio.
+
+20
+00:01:29,253 --> 00:01:32,423
+Viene del ácido carbónico, que tiene dos hidrógenos.
+
+21
+00:01:32,423 --> 00:01:37,824
+Le dejamos uno, así que hemos quitado un hidrógeno: el anión tiene una carga negativa.
+
+22
+00:01:37,824 --> 00:01:40,595
+El sodio forma el catión Na⁺.
+
+23
+00:01:40,595 --> 00:01:46,615
+Las cargas se compensan: NaHCO₃. Es el bicarbonato que tienes en la cocina.
+
+24
+00:01:47,115 --> 00:01:50,433
+Segundo ejemplo: dihidrogenofosfato de calcio.
+
+25
+00:01:50,433 --> 00:01:54,906
+Viene del ácido fosfórico, H₃PO₄, con tres hidrógenos.
+
+26
+00:01:54,906 --> 00:01:58,992
+Le dejamos dos, así que hemos quitado uno: carga 1−.
+
+27
+00:01:58,992 --> 00:02:01,792
+El calcio tiene carga 2+.
+
+28
+00:02:02,292 --> 00:02:07,814
+Cruzamos las cargas: el 2 del calcio pasa al anión y el 1 del anión pasa al calcio.
+
+29
+00:02:07,814 --> 00:02:15,147
+Resultado: Ca(H₂PO₄)₂. El anión va entre paréntesis porque lleva subíndice.
+
+30
+00:02:15,647 --> 00:02:18,859
+Tercer ejemplo: hidrogenofosfato de sodio.
+
+31
+00:02:18,859 --> 00:02:21,359
+También viene del ácido fosfórico.
+
+32
+00:02:21,359 --> 00:02:27,138
+Ahora le dejamos un solo hidrógeno: hemos quitado dos, así que la carga es 2−.
+
+33
+00:02:27,138 --> 00:02:29,938
+El sodio tiene carga +1.
+
+34
+00:02:30,438 --> 00:02:35,338
+Al cruzar las cargas, el sodio lleva un 2 y el anión un 1, que no se escribe.
+
+35
+00:02:35,338 --> 00:02:40,938
+Resultado: Na₂HPO₄, sin paréntesis.
+
+36
+00:02:41,438 --> 00:02:43,678
+Para nombrar una sal ácida:
+
+37
+00:02:43,678 --> 00:02:47,386
+separa el metal del anión, que es el que lleva el hidrógeno,
+
+38
+00:02:47,386 --> 00:02:50,929
+reconoce de qué ácido viene y cuántos hidrógenos le quedan,
+
+39
+00:02:50,929 --> 00:02:54,571
+calcula la carga del metal para que el compuesto sea neutro,
+
+40
+00:02:54,571 --> 00:02:58,535
+y di hidrogeno o dihidrogeno, el anión, «de» y el metal.
+
+41
+00:02:59,035 --> 00:03:01,818
+Vamos a nombrar KH₂PO₄.
+
+42
+00:03:01,818 --> 00:03:05,332
+Separamos el potasio del anión H₂PO₄.
+
+43
+00:03:05,332 --> 00:03:11,692
+Viene del ácido fosfórico y le quedan dos hidrógenos: es el dihidrogenofosfato, con una carga negativa.
+
+44
+00:03:11,692 --> 00:03:14,800
+El potasio solo puede tener carga +1.
+
+45
+00:03:14,800 --> 00:03:18,648
+Nombre: dihidrogenofosfato de potasio, sin número romano.
+
+46
+00:03:19,148 --> 00:03:23,467
+Otro ejemplo: Cu(HSO₃)₂.
+
+47
+00:03:23,467 --> 00:03:26,923
+Separamos el cobre del anión HSO₃.
+
+48
+00:03:26,923 --> 00:03:33,087
+Viene del ácido sulfuroso y le queda un hidrógeno: es el hidrogenosulfito, con carga 1−.
+
+49
+00:03:33,087 --> 00:03:37,762
+Hay dos aniones, que suman dos cargas negativas, así que el cobre es 2+.
+
+50
+00:03:37,762 --> 00:03:41,562
+Nombre: hidrogenosulfito de cobre(II).
+
+51
+00:03:42,062 --> 00:03:47,962
+Ahora practica tú. Formula el hidrogenocarbonato de magnesio.
+
+52
+00:03:47,962 --> 00:03:52,562
+Solución: Mg(HCO₃)₂.
+
+53
+00:03:53,062 --> 00:03:58,962
+Nombra NaHSO₄.
+
+54
+00:03:58,962 --> 00:04:03,562
+Solución: hidrogenosulfato de sodio.
+
+55
+00:04:04,062 --> 00:04:09,962
+Formula el hidrogenofosfato de potasio.
+
+56
+00:04:09,962 --> 00:04:14,562
+Solución: K₂HPO₄.
+
+57
+00:04:15,062 --> 00:04:20,962
+Nombra Fe(HCO₃)₃.
+
+58
+00:04:20,962 --> 00:04:25,562
+Solución: hidrogenocarbonato de hierro(III).
+
+59
+00:04:26,062 --> 00:04:30,705
+En resumen: en una sal ácida el anión conserva algún hidrógeno del ácido.
+
+60
+00:04:30,705 --> 00:04:34,289
+Se nombran con hidrogeno o dihidrogeno delante del anión.
+
+61
+00:04:34,289 --> 00:04:38,238
+La carga del anión es igual al número de hidrógenos que se han quitado,
+
+62
+00:04:38,238 --> 00:04:41,738
+y en la fórmula el hidrógeno se escribe delante del anión.
+

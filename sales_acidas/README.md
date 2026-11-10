@@ -22,3 +22,5 @@ python3 ../narrar.py sales_acidas --voz <carpeta>    # versión con voz
 5. **Nombrar**, con dos ejemplos: KH₂PO₄ → dihidrogenofosfato de potasio y Cu(HSO₃)₂ → hidrogenosulfito de cobre(II).
 6. **Cuatro ejercicios:** Mg(HCO₃)₂, NaHSO₄, K₂HPO₄ y Fe(HCO₃)₃.
 7. **Resumen.**
+
+`narracion.json` guarda cuánto dura cada frase hablada; con él, el vídeo se alarga donde hace falta para que la voz vaya sincronizada (ver `../narrar.py`).

@@ -26,3 +26,5 @@ python3 ../narrar.py oxisales --voz <carpeta>    # versión con voz
 
 Se usa la nomenclatura tradicional (sulfato de cobre(II)), que la IUPAC acepta. La de
 adición, del tipo tetraoxidosulfato(2−) de cobre(2+), no aparece en el vídeo.
+
+`narracion.json` guarda cuánto dura cada frase hablada; con él, el vídeo se alarga donde hace falta para que la voz vaya sincronizada (ver `../narrar.py`).
