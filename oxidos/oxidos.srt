@@ -1,0 +1,124 @@
+1
+00:00:00,300 --> 00:00:05,000
+Un clavo oxidado, las burbujas de tu refresco y la arena de la playa.
+
+2
+00:00:05,000 --> 00:00:07,850
+Los tres son óxidos.
+
+3
+00:00:08,300 --> 00:00:13,000
+Un óxido es la combinación del oxígeno con otro elemento.
+
+4
+00:00:13,000 --> 00:00:17,850
+Y el oxígeno actúa siempre con número de oxidación −2.
+
+5
+00:00:18,300 --> 00:00:20,500
+Hay dos tipos de óxidos.
+
+6
+00:00:20,500 --> 00:00:25,500
+Con un metal forma un óxido metálico, como el óxido de hierro: la herrumbre.
+
+7
+00:00:25,500 --> 00:00:30,350
+Con un no metal forma un óxido no metálico, como el dióxido de carbono.
+
+8
+00:00:30,800 --> 00:00:35,224
+Para formularlo, escribe primero el otro elemento y después el oxígeno.
+
+9
+00:00:35,224 --> 00:00:40,313
+Cada uno con su número de oxidación: hierro, +3; oxígeno, −2.
+
+10
+00:00:40,313 --> 00:00:44,850
+Ahora crúzalos: el 3 baja al oxígeno y el 2 baja al hierro.
+
+11
+00:00:44,850 --> 00:00:47,200
+Resultado: Fe₂O₃.
+
+12
+00:00:47,650 --> 00:00:50,450
+Si los subíndices se pueden simplificar, hazlo.
+
+13
+00:00:50,450 --> 00:00:56,291
+Calcio, +2; oxígeno, −2. Al cruzar queda Ca₂O₂…
+
+14
+00:00:56,291 --> 00:01:00,141
+Dividimos entre dos y queda CaO.
+
+15
+00:01:00,591 --> 00:01:03,291
+Para nombrarlo tienes dos formas.
+
+16
+00:01:03,291 --> 00:01:08,791
+Con prefijos, que cuentan los átomos: trióxido de dihierro.
+
+17
+00:01:08,791 --> 00:01:14,141
+O con el número de oxidación en números romanos: óxido de hierro(III).
+
+18
+00:01:14,591 --> 00:01:16,066
+Más ejemplos.
+
+19
+00:01:16,066 --> 00:01:20,566
+CO: monóxido de carbono, u óxido de carbono(II).
+
+20
+00:01:20,566 --> 00:01:25,066
+CO₂: dióxido de carbono, u óxido de carbono(IV).
+
+21
+00:01:25,066 --> 00:01:30,685
+CaO: óxido de calcio. El calcio solo tiene un número de oxidación, así que no se indica.
+
+22
+00:01:31,135 --> 00:01:34,835
+Ojo con los halógenos: flúor, cloro, bromo y yodo.
+
+23
+00:01:34,835 --> 00:01:38,835
+Con ellos, el oxígeno se escribe delante y el nombre cambia.
+
+24
+00:01:38,835 --> 00:01:43,185
+OCl₂ es dicloruro de oxígeno, no óxido de cloro.
+
+25
+00:01:43,635 --> 00:01:48,835
+Tu turno. Nombra Al₂O₃.
+
+26
+00:01:48,835 --> 00:01:52,685
+Óxido de aluminio, o trióxido de dialuminio.
+
+27
+00:01:53,135 --> 00:01:58,335
+Ahora formula el óxido de cobre(I).
+
+28
+00:01:58,335 --> 00:02:03,039
+Cobre, +1; oxígeno, −2. Al cruzar: Cu₂O.
+
+29
+00:02:03,489 --> 00:02:07,413
+En resumen: un óxido es oxígeno más otro elemento.
+
+30
+00:02:07,413 --> 00:02:11,726
+El oxígeno actúa con −2: cruza los números y simplifica.
+
+31
+00:02:11,726 --> 00:02:15,576
+Y se nombra con prefijos o con el número de oxidación en romanos.
+

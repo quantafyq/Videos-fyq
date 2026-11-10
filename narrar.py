@@ -64,7 +64,7 @@ def spoken(text):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("carpeta", choices=["colisiones", "estados", "oxisales", "sales_acidas"])
+    ap.add_argument("carpeta", choices=["colisiones", "estados", "oxisales", "sales_acidas", "oxidos"])
     ap.add_argument("--voz", required=True, help="carpeta de la voz Piper")
     ap.add_argument("--velocidad", type=float, default=1.0)
     ap.add_argument("--medir", action="store_true",
