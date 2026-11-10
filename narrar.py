@@ -45,6 +45,7 @@ def spoken(text):
     """Adapta el texto escrito para que la voz lo lea bien."""
     t = text
     rep = [
+        ("(III)", " tres"), ("(II)", " dos"), ("(IV)", " cuatro"), ("(I)", " uno"),
         ("A₂", "A dos"), ("B₂", "B dos"), ("2 AB", "dos A B"),
         ("A–A", "A A"), ("B–B", "B B"), ("A–B", "A B"), ("AB", "A B"),
         ("Ea", "E a"), ("≥", "mayor o igual que"), ("…", "..."),
@@ -57,7 +58,7 @@ def spoken(text):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("carpeta", choices=["colisiones", "estados"])
+    ap.add_argument("carpeta", choices=["colisiones", "estados", "oxisales", "sales_acidas"])
     ap.add_argument("--voz", required=True, help="carpeta de la voz Piper")
     ap.add_argument("--velocidad", type=float, default=1.0)
     args = ap.parse_args()
@@ -81,7 +82,9 @@ def main():
     caps, total = mod.CAPS, mod.TOTAL
     sr = None
     clips = []
-    for t0, t1, txt in caps:
+    for cap in caps:
+        t0, t1 = cap[0], cap[1]
+        txt = cap[3] if len(cap) > 3 else cap[2]
         speed = args.velocidad
         audio = tts.generate(spoken(txt), sid=0, speed=speed)
         sr = audio.sample_rate
