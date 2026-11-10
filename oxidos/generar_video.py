@@ -122,19 +122,19 @@ def s_tipos(cv, t, D):
 
 
 def cross_stage(cv, t, sym, q, y, tA, tQ, tX, tR, size=220):
-    """Símbolos arriba, sus números de oxidación debajo y, cruzando, la fórmula."""
-    xs, xo = 330, 750
+    """Símbolos con su número de oxidación encima y, cruzando, la fórmula."""
+    xs, xo = 300, 790
     sa = pop(t, tA)
     if sa > 0.02:
         cv.text(xs, y, sym, size * min(sa, 1.05), INK)
     so = pop(t, tA + 0.5)
     if so > 0.02:
         cv.text(xo, y, "O", size * min(so, 1.05), BLUE)
-    yq = y + 175
-    sticker(cv, xs, yq, f"{q}+" if q > 1 else "+", 74, -6, YELLOW, pop(t, tQ))
-    sticker(cv, xo, yq, "2−", 74, 6, YELLOW, pop(t, tQ + 0.5))
+    yq = y - 178
+    sticker(cv, xs, yq, f"+{q}", 70, -5, YELLOW, pop(t, tQ))
+    sticker(cv, xo, yq, "−2", 70, 5, YELLOW, pop(t, tQ + 0.5))
     # fórmula cruzada
-    yr = y + 440
+    yr = y + 340
     parts = [(sym, INK), ("2", ORANGE), ("O", BLUE)] + ([(str(q), ORANGE)] if q > 1 else [])
     rs = size * 0.9
     runs, w = formula_runs(parts, rs)
@@ -144,9 +144,11 @@ def cross_stage(cv, t, sym, q, y, tA, tQ, tX, tR, size=220):
     sub_o = subs[1] if len(subs) > 1 else x0 + w + 20
     u = ramp(t, tX, tX + 0.9)
     if u > 0:
-        y0, y1 = yq + 62, yr - rs * 0.25
-        cv.arrow(xs, y0, xs + (sub_o - xs) * u, y0 + (y1 - y0) * u, ORANGE, 11, 36)
-        cv.arrow(xo, y0, xo + (sub_m - xo) * u, y0 + (y1 - y0) * u, ORANGE, 11, 36)
+        # salen del lado interior de cada número y se cruzan en el hueco entre los símbolos
+        y0, y1 = yq + 30, yr - rs * 0.2
+        a0, b0 = xs + 92, xo - 92
+        cv.arrow(a0, y0, a0 + (sub_o - a0) * u, y0 + (y1 - y0) * u, ORANGE, 11, 36)
+        cv.arrow(b0, y0, b0 + (sub_m - b0) * u, y0 + (y1 - y0) * u, ORANGE, 11, 36)
     sr = pop(t, tR)
     if sr > 0.02:
         formula(cv, W / 2, yr + (1 - min(1, sr)) * 30, parts, rs)
@@ -155,35 +157,48 @@ def cross_stage(cv, t, sym, q, y, tA, tQ, tX, tR, size=220):
 
 def s_formular(cv, t, D):
     headline(cv, t, 340, [[("Así se ", False), ("formula", True)]], 108)
-    chip(cv, W / 2, 500, "1.º el otro elemento · 2.º el oxígeno", 34, INK, PAPER, pop(t, 1.6), anchor="c")
-    cross_stage(cv, t, "Fe", 3, 690, 0.8, 4.5, 8.5, 9.8)
-    sticker(cv, 790, 1292, "¡hecho!", 54, -6, PAPER, pop(t, 12.5))
+    chip(cv, W / 2, 478, "a la derecha, el más electronegativo", 34, INK, PAPER, pop(t, 1.6), anchor="c")
+    cross_stage(cv, t, "Fe", 3, 800, 0.8, 5.0, 9.0, 10.3)
+    s = pop(t, 2.4) * (1 - ramp(t, 4.3, 4.7))
+    sticker(cv, 700, 960, "más electronegativo", 38, -4, PAPER, s)
+    sticker(cv, 800, 1300, "¡hecho!", 54, -6, PAPER, pop(t, 13.0))
 
 
 def s_simplifica(cv, t, D):
     headline(cv, t, 320, [[("Y si se puede,", False)], [("simplifica", True)]], 100)
-    x0, w, yr = cross_stage(cv, t, "Ca", 2, 670, 0.8, 3.0, 4.2, 5.4, size=190)
+    x0, w, yr = cross_stage(cv, t, "Ca", 2, 790, 0.8, 3.0, 4.2, 5.4, size=190)
     strike(cv, x0 - 10, x0 + w + 10, yr + 10, ramp(t, 8.0, 8.5))
-    sticker(cv, 620, yr + 172, "CaO", 92, -5, YELLOW, pop(t, 8.6))
+    sticker(cv, 640, yr + 160, "CaO", 84, -5, YELLOW, pop(t, 8.6))
 
 
 def s_nombrar(cv, t, D):
     headline(cv, t, 340, [[("Así se ", False), ("nombra", True)]], 108)
     s = pop(t, 0.6)
+    fparts = [("Fe", INK), ("2", ORANGE), ("O", BLUE), ("3", ORANGE)]
     if s > 0.02:
-        formula(cv, W / 2, 610, [("Fe", INK), ("2", ORANGE), ("O", INK), ("3", ORANGE)], 190 * min(s, 1.05))
-    sa = pop(t, 3.0)
-    card(cv, 60, 770, 1010, 990, scale=sa)
+        formula(cv, W / 2, 600, fparts, 180 * min(s, 1.05))
+    # se lee de derecha a izquierda: 1.º el de la derecha, 2.º el de la izquierda
+    runs, w = formula_runs(fparts, 180)
+    x0 = W / 2 - w / 2
+    x_fe = x0 + text_w("Fe", 180) / 2
+    x_o = x0 + [dx for txt, dx, dy, fs, col in runs if txt == "O"][0] + text_w("O", 180) / 2
+    u = ramp(t, 2.2, 3.0)
+    if u > 0:
+        cv.arrow(x_o - 70, 742, x_o - 70 + (x_fe + 70 - (x_o - 70)) * u, 742, ORANGE, 11, 36)
+    chip(cv, x_o, 742, "1.º", 34, BLUE, PAPER, pop(t, 1.8), anchor="c")
+    chip(cv, x_fe, 742, "2.º", 34, INK, PAPER, pop(t, 3.0), anchor="c")
+    sa = pop(t, 7.0)
+    card(cv, 60, 820, 1010, 1040, scale=sa)
     if sa > 0.85:
-        chip(cv, 100, 832, "CON PREFIJOS", 30, BLUE)
-        n = [("tri", ORANGE), ("óxido de ", INK), ("di", ORANGE), ("hierro", INK)]
-        formula(cv, 100, 925, n, fit(n, 74, 870), align="left")
-    sb = pop(t, 8.5)
-    card(cv, 60, 1040, 1010, 1260, scale=sb)
+        chip(cv, 100, 882, "CON PREFIJOS", 30, BLUE)
+        n = [("tri", ORANGE), ("óxido", BLUE), (" de ", INK), ("di", ORANGE), ("hierro", INK)]
+        formula(cv, 100, 975, n, fit(n, 74, 870), align="left")
+    sb = pop(t, 12.5)
+    card(cv, 60, 1085, 1010, 1305, scale=sb)
     if sb > 0.85:
-        chip(cv, 100, 1102, "CON N.º DE OXIDACIÓN", 30, ORANGE)
-        n = [("óxido de hierro", INK), ("(III)", ORANGE)]
-        formula(cv, 100, 1195, n, fit(n, 74, 870), align="left")
+        chip(cv, 100, 1147, "CON N.º DE OXIDACIÓN", 30, ORANGE)
+        n = [("óxido", BLUE), (" de hierro", INK), ("(III)", ORANGE)]
+        formula(cv, 100, 1240, n, fit(n, 74, 870), align="left")
 
 
 def ej_card(cv, t, t0, y0, f, n1, n2, note=None):
@@ -217,7 +232,7 @@ def s_ojo(cv, t, D):
     s = pop(t, 4.0)
     if s > 0.02:
         formula(cv, 350, 920, [("O", BLUE), ("Cl2", INK)], 200 * min(s, 1.05))
-    sticker(cv, 835, 900, "el O, delante", 38, 6, PAPER, pop(t, 4.8))
+    sticker(cv, 835, 900, "el O, a la izquierda", 32, 6, PAPER, pop(t, 4.8))
     sb = pop(t, 8.0)
     card(cv, 60, 1070, 1010, 1290, scale=sb)
     if sb > 0.85:
@@ -255,8 +270,8 @@ def s_p2(cv, t, D):
 def s_resumen(cv, t, D):
     headline(cv, t, 340, [[("En ", False), ("resumen", True)]], 108)
     rows = [(0.6, ["Óxido =", "oxígeno + otro elemento"]),
-            (4.0, ["El O actúa con −2:", "cruza y simplifica"]),
-            (8.0, ["Nombre: con prefijos", "o con número romano"])]
+            (4.0, ["El O (−2), a la derecha:", "cruza y simplifica"]),
+            (8.5, ["Se nombra de derecha", "a izquierda"])]
     for k, (t0, txt) in enumerate(rows):
         s = pop(t, t0)
         y0 = 500 + k * 265
@@ -295,22 +310,23 @@ SCENES = [
         (0.3, "Hay dos tipos de óxidos."),
         (2.5, "Con un metal forma un óxido metálico, como el óxido de hierro: la herrumbre."),
         (7.5, "Con un no metal forma un óxido no metálico, como el dióxido de carbono.")]),
-    (15.0, s_formular, [
-        (0.3, "Para formularlo, escribe primero el otro elemento y después el oxígeno."),
-        (4.5, "Cada uno con su número de oxidación: hierro, +3; oxígeno, −2.",
-         "Cada uno con su número de oxidación: hierro, más tres; oxígeno, menos dos."),
-        (8.5, "Ahora crúzalos: el 3 baja al oxígeno y el 2 baja al hierro.",
+    (15.5, s_formular, [
+        (0.3, "Para formularlo, a la derecha se escribe el elemento más electronegativo: aquí, el oxígeno."),
+        (5.0, "Encima de cada uno, su número de oxidación: hierro, +3; oxígeno, −2.",
+         "Encima de cada uno, su número de oxidación: hierro, más tres; oxígeno, menos dos."),
+        (9.0, "Ahora crúzalos: el 3 baja al oxígeno y el 2 baja al hierro.",
          "Ahora crúzalos: el tres baja al oxígeno, y el dos baja al hierro."),
-        (12.5, "Resultado: Fe₂O₃.", "Resultado: efe e dos, o tres.")]),
+        (13.0, "Resultado: Fe₂O₃.", "Resultado: efe e dos, o tres.")]),
     (12.0, s_simplifica, [
         (0.3, "Si los subíndices se pueden simplificar, hazlo."),
         (3.0, "Calcio, +2; oxígeno, −2. Al cruzar queda Ca₂O₂…",
          "Calcio, más dos; oxígeno, menos dos. Al cruzar queda calcio dos, oxígeno dos."),
         (8.0, "Dividimos entre dos y queda CaO.", "Dividimos entre dos y queda ce a, o.")]),
-    (14.0, s_nombrar, [
-        (0.3, "Para nombrarlo tienes dos formas."),
-        (3.0, "Con prefijos, que cuentan los átomos: trióxido de dihierro."),
-        (8.5, "O con el número de oxidación en números romanos: óxido de hierro(III).",
+    (18.0, s_nombrar, [
+        (0.3, "Se nombra de derecha a izquierda: primero el elemento de la derecha y después el de la izquierda."),
+        (5.5, "Y tienes dos formas de hacerlo."),
+        (7.0, "Con prefijos, que cuentan los átomos: trióxido de dihierro."),
+        (12.5, "O con el número de oxidación en números romanos: óxido de hierro(III).",
          "O con el número de oxidación en números romanos: óxido de hierro tres.")]),
     (15.5, s_ejemplos, [
         (0.3, "Más ejemplos."),
@@ -322,7 +338,7 @@ SCENES = [
          "Ce a o: óxido de calcio. El calcio solo tiene un número de oxidación, así que no se indica.")]),
     (12.5, s_ojo, [
         (0.3, "Ojo con los halógenos: flúor, cloro, bromo y yodo."),
-        (4.0, "Con ellos, el oxígeno se escribe delante y el nombre cambia."),
+        (4.0, "Por convenio, el halógeno va a la derecha y el oxígeno a la izquierda, así que el nombre cambia."),
         (8.0, "OCl₂ es dicloruro de oxígeno, no óxido de cloro.",
          "O ce ele dos es dicloruro de oxígeno, no óxido de cloro.")]),
     (9.5, s_p1, [
@@ -332,11 +348,11 @@ SCENES = [
         (0.3, "Ahora formula el óxido de cobre(I).", "Ahora formula el óxido de cobre uno."),
         (5.5, "Cobre, +1; oxígeno, −2. Al cruzar: Cu₂O.",
          "Cobre, más uno; oxígeno, menos dos. Al cruzar: ce u dos, o.")]),
-    (12.0, s_resumen, [
+    (12.5, s_resumen, [
         (0.3, "En resumen: un óxido es oxígeno más otro elemento."),
-        (4.0, "El oxígeno actúa con −2: cruza los números y simplifica.",
-         "El oxígeno actúa con menos dos: cruza los números y simplifica."),
-        (8.0, "Y se nombra con prefijos o con el número de oxidación en romanos.")]),
+        (4.0, "El oxígeno, con −2, va a la derecha: cruza los números y simplifica.",
+         "El oxígeno, con menos dos, va a la derecha: cruza los números y simplifica."),
+        (8.5, "Y se nombra de derecha a izquierda, con prefijos o con números romanos.")]),
     (3.5, s_fin, []),
 ]
 
