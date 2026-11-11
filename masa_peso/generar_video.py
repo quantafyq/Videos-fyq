@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Vídeo vertical (1080x1920): «Masa y peso» — diferencias y fórmula P = m · g.
+Vídeo vertical (1080x1920): «Peso y masa en un minuto», con una manzana.
 
 Uso:
     python3 generar_video.py               # vídeo + subtítulos .srt
@@ -14,48 +14,34 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "comun"))
 from reel import (  # noqa: E402
-    Reel, W, INK, PAPER, ORANGE, BLUE, GREY, LIGHT, YELLOW, GREEN,
-    pop, ramp, ease, text_w, formula, fit, headline, highlight, sticker, card, chip, check, countdown,
+    Reel, W, INK, PAPER, ORANGE, BLUE, GREY, LIGHT, YELLOW, GREEN, SS, mix,
+    pop, ramp, text_w, formula, fit, headline, highlight, sticker, card, chip, check,
 )
 
-SKIN = (242, 196, 160)
-DARK = (58, 56, 68)
+RED = (226, 58, 44)
 C_P, C_M, C_G = ORANGE, BLUE, GREEN
 
 
 # --------------------------------------------------------------------------
 # Ilustraciones
 # --------------------------------------------------------------------------
-def person(cv, x, y, s=1.0, shirt=BLUE):
-    """Personaje con los pies en (x, y)."""
-    cv.rect(x - 46 * s, y - 95 * s, x - 6 * s, y, fill=DARK, width=6, radius=10 * s)
-    cv.rect(x + 6 * s, y - 95 * s, x + 46 * s, y, fill=DARK, width=6, radius=10 * s)
-    cv.rect(x - 82 * s, y - 215 * s, x - 52 * s, y - 105 * s, fill=shirt, width=6, radius=14 * s)
-    cv.rect(x + 52 * s, y - 215 * s, x + 82 * s, y - 105 * s, fill=shirt, width=6, radius=14 * s)
-    cv.rect(x - 58 * s, y - 225 * s, x + 58 * s, y - 80 * s, fill=shirt, width=7, radius=26 * s)
-    cv.circle(x, y - 275 * s, 56 * s, fill=SKIN, width=7)
-    for sx in (-1, 1):
-        cv.circle(x + sx * 20 * s, y - 282 * s, 7 * s, fill=INK, width=0)
-    cv.line([(x - 18 * s, y - 255 * s), (x, y - 247 * s), (x + 18 * s, y - 255 * s)], INK, 6 * s)
-
-
-def bascula(cv, x, y, txt):
-    cv.rect(x - 190, y, x + 190, y + 84, fill=LIGHT, width=7, radius=24)
-    cv.rect(x - 100, y + 16, x + 100, y + 68, fill=INK, width=0, radius=10)
-    cv.text(x, y + 43, txt, 38, YELLOW)
-
-
-def dinamometro(cv, x, y, txt, stretch=1.0):
-    cv.circle(x, y, 20, fill=None, width=8)
-    cv.rect(x - 34, y + 20, x + 34, y + 210, fill=PAPER, width=7, radius=14)
-    for k in range(6):
-        cv.line([(x - 34, y + 50 + k * 26), (x - 12, y + 50 + k * 26)], INK, 4)
-    ind = y + 60 + 90 * stretch
-    cv.line([(x - 6, ind), (x + 30, ind)], ORANGE, 8)
-    cv.line([(x, y + 210), (x, y + 240 + 30 * stretch)], INK, 7)
-    by = y + 240 + 30 * stretch
-    cv.rect(x - 46, by, x + 46, by + 80, fill=ORANGE, width=7, radius=12)
-    sticker(cv, x + 200, y + 70, txt, 38, 6, YELLOW)
+def apple(cv, x, y, r, s=1.0):
+    """Manzana centrada en (x, y)."""
+    r *= s
+    if r < 3:
+        return
+    w = max(4, r * 0.085)
+    d = cv.d
+    d.ellipse([(x - r + 7) * SS, (y - r * 0.9 + 9) * SS, (x + r + 7) * SS, (y + r * 0.9 + 9) * SS], fill=INK)
+    d.ellipse([(x - r) * SS, (y - r * 0.9) * SS, (x + r) * SS, (y + r * 0.9) * SS], fill=RED, outline=INK,
+              width=int(w * SS))
+    cv.circle(x - r * 0.42, y - r * 0.36, r * 0.15, fill=mix(RED, PAPER, 0.6), width=0)
+    cv.line([(x, y - r * 0.82), (x + r * 0.1, y - r * 1.2)], INK, w * 1.2)
+    lx, ly = x + r * 0.42, y - r * 1.12
+    pts = [(lx + r * 0.36 * math.cos(a) * math.cos(-0.5) - r * 0.16 * math.sin(a) * math.sin(-0.5),
+            ly + r * 0.36 * math.cos(a) * math.sin(-0.5) + r * 0.16 * math.sin(a) * math.cos(-0.5))
+           for a in [i * math.pi / 10 for i in range(20)]]
+    cv.poly(pts, GREEN, INK, w * 0.8)
 
 
 def earth(cv, x, y, r):
@@ -73,242 +59,217 @@ def moon(cv, x, y, r):
         cv.circle(x + dx * r, y + dy * r, rr * r, fill=GREY, width=5)
 
 
-def bullets(cv, t, items, y0, h=118, gap=18, color=GREEN):
-    for k, (t0, txt) in enumerate(items):
-        s = pop(t, t0)
-        y = y0 + k * (h + gap)
-        card(cv, 60, y, 1010, y + h, scale=s, shadow=10)
-        if s > 0.85:
-            check(cv, 132, y + h / 2, 34, color)
-            cv.text(200, y + h / 2, txt, min(44, 44 * 780 / text_w(txt, 44)), INK, "black", "lm")
+def fall(t, period, frac):
+    """0 (arriba) -> 1 (apoyada). Cae durante `frac` del periodo y espera."""
+    u = (t % period) / period
+    return (u / frac) ** 2 if u < frac else 1.0
 
 
-def big_formula(cv, y, size, s=1.0):
-    parts = [("P", C_P), (" = ", INK), ("m", C_M), (" · ", INK), ("g", C_G)]
-    return formula(cv, W / 2, y, parts, fit(parts, size, 840) * min(s, 1.05))
+def planet_apple(cv, t, kind, x, y, r, drop=260, arrow=None, s=1.0, r_ap=58):
+    """Planeta con la manzana cayendo una y otra vez encima."""
+    if s < 0.5:
+        return
+    (earth if kind == "tierra" else moon)(cv, x, y, r)
+    f = fall(t, 1.5, 0.3) if kind == "tierra" else fall(t, 2.8, 0.75)
+    ya = y - r - r_ap * 0.78 - drop * (1 - f)
+    apple(cv, x, ya, r_ap)
+    if arrow:                                  # flecha del peso, junto al planeta
+        ax = x + r * 0.78 + 62
+        cv.arrow(ax, y - r - 215, ax, y - r - 215 + arrow, ORANGE, 14, 44)
+
+
+def wob(t, k=0.0, a=6):
+    return a * math.sin(t * 3 + k)
 
 
 # --------------------------------------------------------------------------
 # Escenas
 # --------------------------------------------------------------------------
 def s_hook(cv, t, D):
-    if t < 4.5:
-        headline(cv, t, 330, [[("¿Cuánto", False)], [("pesas?", True)]], 120)
-    else:
-        headline(cv, t, 330, [[("Eso es tu", False)], [("masa", True)]], 120, t0=4.5)
-    s = pop(t, 0.8)
-    if s > 0.5:
-        bascula(cv, 540, 1100, "50 kg")
-        person(cv, 540, 1100, 1.25)
-    sticker(cv, 830, 760, "«50 kilos»", 54, 7, PAPER, pop(t, 2.2))
-    sticker(cv, 290, 640, "¡no es tu peso!", 50, -7, YELLOW, pop(t, 5.2))
+    headline(cv, t, 330, [[("¿Peso", True)], [("o masa?", False)]], 150)
+    u = max(0.0, t - 0.5)                      # la manzana cae y rebota
+    b = abs(math.cos(u * 4.2)) * math.exp(-u * 0.9)
+    if t > 0.5:
+        cv.line([(300, 1232), (780, 1232)], INK, 10)
+        apple(cv, 540, 1090 - 480 * b, 150)
+    sticker(cv, 810, 700 + wob(t), "¿diferencia?", 50, 7, PAPER, pop(t, 1.2))
+    sticker(cv, 290, 770 + wob(t, 2), "en 1 minuto", 64, -8, YELLOW, pop(t, 3.6))
 
 
 def s_masa(cv, t, D):
-    headline(cv, t, 340, [[("La ", False), ("masa", True)]], 120)
-    s = pop(t, 0.7)
-    if s > 0.5:
-        bascula(cv, 330, 800, "50 kg")
-        person(cv, 330, 800, 0.85)
-    sticker(cv, 760, 610, [("m", PAPER)], 120, -6, BLUE, pop(t, 1.2))
-    sticker(cv, 760, 770, "kilogramos (kg)", 44, 5, PAPER, pop(t, 4.0))
-    bullets(cv, t, [(1.0, "Cantidad de materia"), (4.0, "Se mide con una balanza"),
-                    (7.5, "Es la misma en cualquier lugar")], 910)
+    headline(cv, t, 340, [[("La ", False), ("masa", True)]], 130)
+    big = pop(t, 0.2) * (1 - ramp(t, 1.8, 2.1))
+    if big > 0.02:
+        apple(cv, 540, 830 + wob(t, 0, 14), 170, min(big, 1.05))
+    if pop(t, 1.9) > 0.5:
+        earth(cv, 280, 940, 150)
+        apple(cv, 280, 940 - 150 - 46 + wob(t, 0, 5), 60)
+        chip(cv, 280, 1140, "TIERRA", 34, BLUE, PAPER, anchor="c")
+    if pop(t, 2.3) > 0.5:
+        moon(cv, 800, 960, 110)
+        apple(cv, 800, 960 - 110 - 46 + wob(t, 1.5, 5), 60)
+        chip(cv, 800, 1140, "LUNA", 34, GREY, PAPER, anchor="c")
+    sticker(cv, 540, 780, "=", 130, 0, YELLOW, pop(t, 3.0))
+    sticker(cv, 280, 610 + wob(t, 1), "0,2 kg", 54, -6, PAPER, pop(t, 6.0))
+    sticker(cv, 800, 640 + wob(t, 2), "0,2 kg", 54, 6, PAPER, pop(t, 6.3))
+    sticker(cv, 540, 1245, [("MASA · en kg", PAPER)], 62, -3, BLUE, pop(t, 6.6))
 
 
 def s_peso(cv, t, D):
-    headline(cv, t, 340, [[("El ", False), ("peso", True)]], 120)
-    s = pop(t, 0.7)
-    if s > 0.5:
-        earth(cv, 300, 850, 130)
-        person(cv, 300, 722, 0.6)
-        u = ramp(t, 1.4, 2.2)
+    headline(cv, t, 340, [[("El ", False), ("peso", True)]], 130)
+    if pop(t, 0.3) > 0.5:
+        planet_apple(cv, t, "tierra", 540, 1100, 200, drop=300, r_ap=80)
+        pulse = 1 + 0.08 * math.sin(t * 6)
+        u = ramp(t, 0.9, 1.5)
         if u > 0:
-            cv.arrow(430, 560, 430, 560 + 150 * u, ORANGE, 14, 44)
-        sticker(cv, 530, 620, "P", 84, 6, ORANGE, pop(t, 2.0))
-    if t > 4.5:
-        dinamometro(cv, 650, 520, "newtons (N)", ease((t - 4.7) / 0.8))
-    bullets(cv, t, [(1.0, "Fuerza con que te atrae la Tierra"), (4.5, "Se mide con un dinamómetro"),
-                    (8.5, "Cambia según dónde estés")], 950, color=ORANGE)
+            cv.arrow(760, 560, 760, 560 + 250 * u * pulse, ORANGE, 20, 60)
+    sticker(cv, 890, 640 + wob(t), "P", 96, 6, ORANGE, pop(t, 1.4))
+    sticker(cv, 260, 640 + wob(t, 2), "es una fuerza", 48, -7, PAPER, pop(t, 2.2))
+    sticker(cv, 240, 775 + wob(t, 1), "newtons (N)", 46, 5, YELLOW, pop(t, 5.2))
 
 
 def s_formula(cv, t, D):
     headline(cv, t, 340, [[("La ", False), ("fórmula", True)]], 120)
-    s = pop(t, 0.8)
-    if s > 0.02:
-        card(cv, 60, 480, 1010, 760, fill=PAPER, scale=min(s, 1.0))
-        big_formula(cv, 620, 230, s)
-    rows = [(4.0, "P", C_P, "peso", "newtons (N)"),
-            (6.0, "m", C_M, "masa", "kilogramos (kg)"),
-            (8.5, "g", C_G, "gravedad", "en la Tierra: 9,8 N/kg")]
-    for k, (t0, sym, col, name, unit) in enumerate(rows):
-        sc = pop(t, t0)
-        y = 820 + k * 158
-        card(cv, 60, y, 1010, y + 136, scale=sc, shadow=10)
+    s = pop(t, 0.3)
+    card(cv, 60, 500, 1010, 800, scale=s)
+    if s > 0.85:
+        tt = [0.6, 0.6, 1.5, 1.5, 2.4]
+        parts = [("P", C_P), (" = ", INK), ("m", C_M), (" · ", INK), ("g", C_G)]
+        shown = [(txt, col if t >= t0 else PAPER) for (txt, col), t0 in zip(parts, tt)]
+        formula(cv, W / 2, 650, shown, fit(parts, 240, 840))
+    for k, (t0, sym, col, name, unit) in enumerate(((0.6, "P", C_P, "peso", "N"), (1.5, "m", C_M, "masa", "kg"),
+                                                    (2.4, "g", C_G, "gravedad", "N/kg"))):
+        sc = pop(t, t0 + 0.2)
+        x0 = 60 + k * 322
+        card(cv, x0, 870, x0 + 306, 1150, scale=sc, shadow=10)
         if sc > 0.85:
-            cv.circle(140, y + 68, 48, fill=col, width=7)
-            cv.text(140, y + 66, sym, 64, PAPER)
-            cv.text(220, y + 44, name, 50, INK, "black", "lm")
-            cv.text(220, y + 98, unit, 36, GREY, "bold", "lm")
+            cv.circle(x0 + 153, 945, 50, fill=col, width=7)
+            cv.text(x0 + 153, 943, sym, 66, PAPER)
+            cv.text(x0 + 153, 1045, name, min(46, 46 * 270 / text_w(name, 46)), INK)
+            cv.text(x0 + 153, 1105, unit, 38, GREY, "bold")
+    apple(cv, 540, 1255 + wob(t, 0, 8), 46, pop(t, 3.0))
 
 
-def planeta(cv, t, kind, g_txt, p_txt, calc, arrow_len, jump):
-    """Escena de cálculo en un planeta."""
-    s = pop(t, 0.7)
-    if s > 0.5:
-        (earth if kind == "tierra" else moon)(cv, 290, 800, 140)
-        dy = jump * abs(math.sin(t * (2.2 if kind == "luna" else 5.0)))
-        person(cv, 290, 662 - dy, 0.55)
-        u = ramp(t, 1.4, 2.0)
-        if u > 0:
-            cv.arrow(410, 520, 410, 520 + arrow_len * u, ORANGE, 14, 44)
-            cv.text(455, 520 + arrow_len / 2, "P", 54, ORANGE, "black", "lm")
-    sticker(cv, 760, 560, "m = 50 kg", 54, -5, PAPER, pop(t, 1.0))
-    sticker(cv, 760, 700, g_txt, 54, 5, YELLOW, pop(t, 2.0))
+def calc_scene(cv, t, kind, g_txt, calc, res, arrow):
+    s = pop(t, 0.3)
+    if kind == "tierra":
+        planet_apple(cv, t, kind, 290, 830, 150, arrow=arrow, s=s)
+    else:
+        planet_apple(cv, t, kind, 290, 850, 115, arrow=arrow, s=s)
+    sticker(cv, 770, 580 + wob(t), g_txt, 64, 5, YELLOW, pop(t, 0.8))
+    sticker(cv, 770, 740 + wob(t, 2), "m = 0,2 kg", 54, -5, PAPER, pop(t, 3.2))
     sc = pop(t, 3.6)
-    card(cv, 60, 960, 1010, 1300, scale=sc)
+    card(cv, 60, 990, 1010, 1300, scale=sc)
     if sc > 0.85:
-        formula(cv, W / 2, 1030, [("P", C_P), (" = ", INK), ("m", C_M), (" · ", INK), ("g", C_G)], 72)
-        s2 = pop(t, 4.2)
-        if s2 > 0.02:
-            formula(cv, W / 2, 1125, calc, 72 * min(s2, 1.05))
-        s3 = pop(t, 8.0 if kind == "tierra" else 5.5)
+        formula(cv, W / 2, 1070, calc, 84)
+        s3 = pop(t, 4.6)
         if s3 > 0.02:
-            sz = 96 * min(s3, 1.05)
-            ww = text_w(p_txt, sz)
-            highlight(cv, W / 2 - ww / 2, 1232 - sz * 0.5, W / 2 + ww / 2, 1232 + sz * 0.46)
-            cv.text(W / 2, 1232, p_txt, sz, INK)
+            sz = 112 * min(s3, 1.05)
+            ww = text_w(res, sz)
+            highlight(cv, W / 2 - ww / 2, 1205 - sz * 0.5, W / 2 + ww / 2, 1205 + sz * 0.46)
+            cv.text(W / 2, 1205, res, sz, INK)
 
 
 def s_tierra(cv, t, D):
     headline(cv, t, 340, [[("En la ", False), ("Tierra", True)]], 112)
-    planeta(cv, t, "tierra", "g = 9,8 N/kg", "P = 490 N",
-            [("P", C_P), (" = ", INK), ("50", C_M), (" · ", INK), ("9,8", C_G)], 170, 6)
+    calc_scene(cv, t, "tierra", "g = 9,8", [("P", C_P), (" = ", INK), ("0,2", C_M), (" · ", INK), ("9,8", C_G)],
+               "P = 1,96 N", 190)
 
 
 def s_luna(cv, t, D):
     headline(cv, t, 340, [[("En la ", False), ("Luna", True)]], 112)
-    planeta(cv, t, "luna", "g = 1,6 N/kg", "P = 80 N",
-            [("P", C_P), (" = ", INK), ("50", C_M), (" · ", INK), ("1,6", C_G)], 60, 70 if t > 10 else 0)
+    calc_scene(cv, t, "luna", "g = 1,6", [("P", C_P), (" = ", INK), ("0,2", C_M), (" · ", INK), ("1,6", C_G)],
+               "P = 0,32 N", 60)
 
 
-def s_compara(cv, t, D):
-    headline(cv, t, 340, [[("No son ", False), ("lo mismo", True)]], 104)
-    sticker(cv, 292, 520, [("MASA", PAPER)], 62, -4, BLUE, pop(t, 0.8))
-    sticker(cv, 782, 520, "PESO", 62, 4, ORANGE, pop(t, 1.1))
-    rows = [("materia", "fuerza"), ("kilogramos (kg)", "newtons (N)"), ("balanza", "dinamómetro"),
-            ("no cambia", "sí cambia")]
-    for k, (a, b) in enumerate(rows):
-        y = 620 + k * 160
-        for x0, x1, txt, t0 in ((60, 520, a, 2.0 + 0.8 * k), (560, 1010, b, 6.0 + 0.8 * k)):
-            sc = pop(t, t0)
-            card(cv, x0, y, x1, y + 130, scale=sc, shadow=10)
-            if sc > 0.85:
-                cv.text((x0 + x1) / 2, y + 65, txt, min(46, 46 * 400 / text_w(txt, 46)), INK)
-
-
-def s_turno(cv, t, D):
-    sticker(cv, W / 2, 320, "TU TURNO", 84, -5, ORANGE, pop(t, 0.1))
-    s = pop(t, 0.5)
-    if s > 0.02:
-        cv.text(W / 2, 500, "Una mochila de 5 kg", 64, INK, "black")
-        cv.text(W / 2, 590, "¿Cuánto pesa en la Tierra?", 50, INK, "bold")
-        # mochila
-        cv.rect(440, 690, 640, 900, fill=BLUE, width=8, radius=40)
-        cv.rect(470, 790, 610, 880, fill=YELLOW, width=7, radius=16)
-        cv.rect(500, 660, 580, 700, fill=None, width=8, radius=18)
-    countdown(cv, W / 2, 1090, t, 2.0, 3)
-    sa = pop(t, 5.5)
-    card(cv, 60, 960, 1010, 1290, fill=YELLOW, scale=sa)
-    if sa > 0.85:
-        formula(cv, W / 2, 1060, [("P", C_P), (" = ", INK), ("5", C_M), (" · ", INK), ("9,8", INK)], 84)
-        cv.text(W / 2, 1195, "P = 49 N", 120, INK)
+def s_misma(cv, t, D):
+    headline(cv, t, 320, [[("Misma masa,", False)], [("distinto peso", True)]], 100)
+    planet_apple(cv, t, "tierra", 280, 940, 150, drop=200, arrow=190, s=pop(t, 0.2))
+    planet_apple(cv, t, "luna", 800, 965, 110, drop=200, arrow=60, s=pop(t, 0.5))
+    sticker(cv, 280, 1178, "0,2 kg", 50, -4, PAPER, pop(t, 0.9))
+    sticker(cv, 800, 1178, "0,2 kg", 50, 4, PAPER, pop(t, 1.1))
+    sticker(cv, 280, 1288, "1,96 N", 58, 3, ORANGE, pop(t, 1.5))
+    sticker(cv, 800, 1288, "0,32 N", 58, -3, ORANGE, pop(t, 1.8))
 
 
 def s_resumen(cv, t, D):
-    headline(cv, t, 340, [[("En ", False), ("resumen", True)]], 108)
-    rows = [(0.6, BLUE, ["Masa: cantidad de materia.", "En kg. No cambia."]),
-            (4.5, ORANGE, ["Peso: fuerza de la gravedad.", "En N. Sí cambia."])]
-    for k, (t0, col, txt) in enumerate(rows):
+    headline(cv, t, 340, [[("Recuerda", True)]], 130)
+    for k, (t0, txt, unit, col) in enumerate(((0.5, "La masa no cambia", "kg", BLUE),
+                                              (1.8, "El peso sí cambia", "N", ORANGE))):
         s = pop(t, t0)
-        y0 = 500 + k * 255
-        card(cv, 60, y0, 1010, y0 + 215, scale=s)
+        y0 = 500 + k * 225
+        card(cv, 60, y0, 1010, y0 + 190, scale=s)
         if s > 0.85:
-            check(cv, 150, y0 + 108, 46, col)
-            for i, ln in enumerate(txt):
-                cv.text(235, y0 + 76 + i * 64, ln, min(46, 46 * 740 / text_w(ln, 46)), INK, "black", "lm")
-    s = pop(t, 8.5)
-    card(cv, 60, 1010, 1010, 1290, fill=YELLOW, scale=s)
+            check(cv, 150, y0 + 95, 46, col)
+            cv.text(235, y0 + 95, txt, min(54, 54 * 600 / text_w(txt, 54)), INK, "black", "lm")
+            cv.circle(915, y0 + 95, 58, fill=col, width=7)
+            cv.text(915, y0 + 93, unit, 50, PAPER)
+    s = pop(t, 3.5)
+    card(cv, 60, 960, 1010, 1270, fill=YELLOW, scale=s)
     if s > 0.85:
-        big_formula(cv, 1150, 190)
+        parts = [("P", C_P), (" = ", INK), ("m", C_M), (" · ", INK), ("g", C_G)]
+        formula(cv, W / 2, 1115, parts, fit(parts, 200, 840))
 
 
 def s_fin(cv, t, D):
-    s = pop(t, 0.2)
+    s = pop(t, 0.1)
     if s > 0.02:
         sz = 120 * min(s, 1.05)
         ww = text_w("@quantafyq", sz)
-        highlight(cv, W / 2 - ww / 2, 860 - sz * 0.5, W / 2 + ww / 2, 860 + sz * 0.46, grow=ramp(t, 0.5, 0.9))
+        highlight(cv, W / 2 - ww / 2, 860 - sz * 0.5, W / 2 + ww / 2, 860 + sz * 0.46, grow=ramp(t, 0.3, 0.7))
         cv.text(W / 2, 860, "@quantafyq", sz, INK)
-    if pop(t, 0.9) > 0.02:
+    if pop(t, 0.6) > 0.02:
         cv.text(W / 2, 1010, "Física y Química", 60, INK, "bold")
+    apple(cv, 540, 1220 + wob(t, 0, 10), 70, pop(t, 0.8))
 
 
 # --------------------------------------------------------------------------
 # Guion: (duración, escena, [(segundo, subtítulo, texto hablado opcional)])
 # --------------------------------------------------------------------------
 SCENES = [
-    (9.0, s_hook, [
-        (0.3, "¿Cuánto pesas? Seguro que respondes algo como «50 kilos».",
-         "¿Cuánto pesas? Seguro que respondes algo como: cincuenta kilos."),
-        (4.5, "Pues eso no es tu peso: es tu masa.")]),
-    (11.5, s_masa, [
-        (0.3, "La masa es la cantidad de materia que tiene un cuerpo."),
-        (4.0, "Se mide en kilogramos, con una balanza."),
-        (7.5, "Y no cambia: es la misma aquí, en la Luna o en cualquier lugar.")]),
-    (12.5, s_peso, [
-        (0.3, "El peso es la fuerza con la que la Tierra te atrae hacia su centro."),
-        (4.5, "Como es una fuerza, se mide en newtons, con un dinamómetro.",
-         "Como es una fuerza, se mide en niutons, con un dinamómetro."),
-        (8.5, "Y sí cambia: depende del lugar en el que estés.")]),
-    (13.0, s_formula, [
-        (0.3, "El peso se calcula con esta fórmula: P = m · g.",
-         "El peso se calcula con esta fórmula: pe es igual a eme por ge."),
-        (4.0, "P es el peso, en newtons.", "Pe es el peso, en niutons."),
-        (6.0, "m es la masa, en kilogramos.", "Eme es la masa, en kilogramos."),
-        (8.5, "Y g es la gravedad: en la Tierra vale 9,8 newtons por kilogramo.",
-         "Y ge es la gravedad: en la Tierra vale nueve coma ocho niutons por kilogramo.")]),
-    (12.0, s_tierra, [
-        (0.3, "Un ejemplo: una persona de 50 kilogramos, en la Tierra.",
-         "Un ejemplo: una persona de cincuenta kilogramos, en la Tierra."),
-        (3.6, "Multiplicamos la masa por la gravedad: 50 por 9,8.",
-         "Multiplicamos la masa por la gravedad: cincuenta por nueve coma ocho."),
-        (8.0, "Su peso es de 490 newtons.", "Su peso es de cuatrocientos noventa niutons.")]),
-    (14.0, s_luna, [
-        (0.3, "¿Y en la Luna? Allí la gravedad es mucho menor: 1,6 newtons por kilogramo.",
-         "¿Y en la Luna? Allí la gravedad es mucho menor: uno coma seis niutons por kilogramo."),
-        (5.5, "La masa sigue siendo 50 kilogramos, pero el peso baja a 80 newtons.",
-         "La masa sigue siendo cincuenta kilogramos, pero el peso baja a ochenta niutons."),
-        (10.0, "Por eso los astronautas dan esos saltos tan grandes.")]),
-    (10.5, s_compara, [
-        (0.3, "Masa y peso no son lo mismo."),
-        (2.0, "La masa es materia, se mide en kilogramos con una balanza y no cambia."),
-        (6.0, "El peso es una fuerza, se mide en newtons con un dinamómetro y sí cambia.",
-         "El peso es una fuerza, se mide en niutons con un dinamómetro y sí cambia.")]),
-    (9.5, s_turno, [
-        (0.3, "Tu turno. Una mochila tiene 5 kilogramos de masa. ¿Cuánto pesa en la Tierra?",
-         "Tu turno. Una mochila tiene cinco kilogramos de masa. ¿Cuánto pesa en la Tierra?"),
-        (5.5, "5 por 9,8: pesa 49 newtons.", "Cinco por nueve coma ocho: pesa cuarenta y nueve niutons.")]),
-    (12.0, s_resumen, [
-        (0.3, "En resumen: la masa es la cantidad de materia, se mide en kilogramos y no cambia."),
-        (4.5, "El peso es la fuerza de la gravedad, se mide en newtons y sí cambia.",
-         "El peso es la fuerza de la gravedad, se mide en niutons y sí cambia."),
-        (8.5, "Y se calcula multiplicando la masa por la gravedad.")]),
-    (3.5, s_fin, []),
+    (5.5, s_hook, [
+        (0.3, "¿Sabes cuál es la diferencia entre peso y masa?"),
+        (3.6, "Te lo cuento en un minuto.")]),
+    (9.5, s_masa, [
+        (0.3, "Mira esta manzana."),
+        (1.8, "La cantidad de manzana es la misma en la Tierra que en la Luna."),
+        (6.0, "Eso es la masa, y se mide en kilogramos.")]),
+    (7.5, s_peso, [
+        (0.3, "El peso es otra cosa: es la fuerza con la que el planeta tira de la manzana."),
+        (5.2, "Se mide en newtons.", "Se mide en niutons.")]),
+    (4.5, s_formula, [
+        (0.3, "Se calcula así: P = m · g. Peso es igual a masa por gravedad.",
+         "Se calcula así: peso es igual a masa por gravedad.")]),
+    (7.5, s_tierra, [
+        (0.3, "En la Tierra, la gravedad vale 9,8.", "En la Tierra, la gravedad vale nueve coma ocho."),
+        (3.2, "Una manzana de 0,2 kilos pesa 1,96 newtons.",
+         "Una manzana de cero coma dos kilos pesa uno coma noventa y seis niutons.")]),
+    (7.5, s_luna, [
+        (0.3, "En la Luna, la gravedad es solo 1,6.", "En la Luna, la gravedad es solo uno coma seis."),
+        (3.2, "La misma manzana pesa 0,32 newtons.",
+         "La misma manzana pesa cero coma treinta y dos niutons.")]),
+    (3.5, s_misma, [
+        (0.3, "Misma masa, distinto peso.")]),
+    (6.0, s_resumen, [
+        (0.3, "Recuerda: la masa no cambia; el peso, sí."),
+        (3.5, "Peso es igual a masa por gravedad.")]),
+    (2.5, s_fin, []),
 ]
 
 VIDEO = Reel(SCENES, HERE, "masa_peso.mp4")
 CAPS, TOTAL = VIDEO.caps, VIDEO.total
+
+
+def barra(cv, T, total):
+    """Barra de tiempo: «te lo cuento en un minuto»."""
+    x0, x1, y = 290, 790, 208
+    cv.rect(x0, y - 9, x1, y + 9, fill=PAPER, width=5, radius=9)
+    u = min(1.0, T / total)
+    if u > 0.04:
+        cv.rect(x0, y - 9, x0 + (x1 - x0) * u, y + 9, fill=ORANGE, width=5, radius=9)
+
+
+VIDEO.overlay = barra
 
 if __name__ == "__main__":
     VIDEO.main()

@@ -390,6 +390,8 @@ class Reel:
                 break
         self.draw_caption(cv, T)
         cv.text(W / 2, 150, MARCA, 40, mix(CREAM, INK, 0.75), "bold")
+        if getattr(self, "overlay", None):
+            self.overlay(cv, T, self.total)
         return cv.final()
 
     def write_srt(self, path):
