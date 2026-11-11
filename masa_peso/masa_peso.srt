@@ -1,0 +1,104 @@
+1
+00:00:00,300 --> 00:00:04,606
+¿Cuánto pesas? Seguro que respondes algo como «50 kilos».
+
+2
+00:00:04,606 --> 00:00:08,956
+Pues eso no es tu peso: es tu masa.
+
+3
+00:00:09,406 --> 00:00:13,106
+La masa es la cantidad de materia que tiene un cuerpo.
+
+4
+00:00:13,106 --> 00:00:16,606
+Se mide en kilogramos, con una balanza.
+
+5
+00:00:16,606 --> 00:00:20,571
+Y no cambia: es la misma aquí, en la Luna o en cualquier lugar.
+
+6
+00:00:21,021 --> 00:00:25,221
+El peso es la fuerza con la que la Tierra te atrae hacia su centro.
+
+7
+00:00:25,221 --> 00:00:29,221
+Como es una fuerza, se mide en newtons, con un dinamómetro.
+
+8
+00:00:29,221 --> 00:00:33,071
+Y sí cambia: depende del lugar en el que estés.
+
+9
+00:00:33,521 --> 00:00:37,952
+El peso se calcula con esta fórmula: P = m · g.
+
+10
+00:00:37,952 --> 00:00:39,952
+P es el peso, en newtons.
+
+11
+00:00:39,952 --> 00:00:42,452
+m es la masa, en kilogramos.
+
+12
+00:00:42,452 --> 00:00:47,104
+Y g es la gravedad: en la Tierra vale 9,8 newtons por kilogramo.
+
+13
+00:00:47,554 --> 00:00:51,607
+Un ejemplo: una persona de 50 kilogramos, en la Tierra.
+
+14
+00:00:51,607 --> 00:00:56,007
+Multiplicamos la masa por la gravedad: 50 por 9,8.
+
+15
+00:00:56,007 --> 00:00:59,857
+Su peso es de 490 newtons.
+
+16
+00:01:00,307 --> 00:01:05,569
+¿Y en la Luna? Allí la gravedad es mucho menor: 1,6 newtons por kilogramo.
+
+17
+00:01:05,569 --> 00:01:10,195
+La masa sigue siendo 50 kilogramos, pero el peso baja a 80 newtons.
+
+18
+00:01:10,195 --> 00:01:14,045
+Por eso los astronautas dan esos saltos tan grandes.
+
+19
+00:01:14,495 --> 00:01:16,440
+Masa y peso no son lo mismo.
+
+20
+00:01:16,440 --> 00:01:20,980
+La masa es materia, se mide en kilogramos con una balanza y no cambia.
+
+21
+00:01:20,980 --> 00:01:25,330
+El peso es una fuerza, se mide en newtons con un dinamómetro y sí cambia.
+
+22
+00:01:25,780 --> 00:01:30,980
+Tu turno. Una mochila tiene 5 kilogramos de masa. ¿Cuánto pesa en la Tierra?
+
+23
+00:01:30,980 --> 00:01:34,830
+5 por 9,8: pesa 49 newtons.
+
+24
+00:01:35,280 --> 00:01:40,269
+En resumen: la masa es la cantidad de materia, se mide en kilogramos y no cambia.
+
+25
+00:01:40,269 --> 00:01:44,269
+El peso es la fuerza de la gravedad, se mide en newtons y sí cambia.
+
+26
+00:01:44,269 --> 00:01:47,619
+Y se calcula multiplicando la masa por la gravedad.
+
