@@ -156,12 +156,12 @@ def calc_scene(cv, t, kind, g_txt, calc, res, arrow):
         planet_apple(cv, t, kind, 290, 830, 150, arrow=arrow, s=s)
     else:
         planet_apple(cv, t, kind, 290, 850, 115, arrow=arrow, s=s)
-    sticker(cv, 770, 580 + wob(t), g_txt, 64, 5, YELLOW, pop(t, 0.8))
+    sticker(cv, 770, 580 + wob(t), g_txt, 52, 5, YELLOW, pop(t, 0.8))
     sticker(cv, 770, 740 + wob(t, 2), "m = 0,2 kg", 54, -5, PAPER, pop(t, 3.2))
     sc = pop(t, 3.6)
     card(cv, 60, 990, 1010, 1300, scale=sc)
     if sc > 0.85:
-        formula(cv, W / 2, 1070, calc, 84)
+        formula(cv, W / 2, 1070, calc, fit(calc, 84, 880))
         s3 = pop(t, 4.6)
         if s3 > 0.02:
             sz = 112 * min(s3, 1.05)
@@ -172,13 +172,13 @@ def calc_scene(cv, t, kind, g_txt, calc, res, arrow):
 
 def s_tierra(cv, t, D):
     headline(cv, t, 340, [[("En la ", False), ("Tierra", True)]], 112)
-    calc_scene(cv, t, "tierra", "g = 9,8", [("P", C_P), (" = ", INK), ("0,2", C_M), (" · ", INK), ("9,8", C_G)],
+    calc_scene(cv, t, "tierra", "g = 9,8 N/kg", [("P", C_P), (" = ", INK), ("0,2 kg", C_M), (" · ", INK), ("9,8 N/kg", C_G)],
                "P = 1,96 N", 190)
 
 
 def s_luna(cv, t, D):
     headline(cv, t, 340, [[("En la ", False), ("Luna", True)]], 112)
-    calc_scene(cv, t, "luna", "g = 1,6", [("P", C_P), (" = ", INK), ("0,2", C_M), (" · ", INK), ("1,6", C_G)],
+    calc_scene(cv, t, "luna", "g = 1,6 N/kg", [("P", C_P), (" = ", INK), ("0,2 kg", C_M), (" · ", INK), ("1,6 N/kg", C_G)],
                "P = 0,32 N", 60)
 
 
@@ -241,11 +241,13 @@ SCENES = [
         (0.3, "Se calcula así: P = m · g. Peso es igual a masa por gravedad.",
          "Se calcula así: peso es igual a masa por gravedad.")]),
     (7.5, s_tierra, [
-        (0.3, "En la Tierra, la gravedad vale 9,8.", "En la Tierra, la gravedad vale nueve coma ocho."),
+        (0.3, "En la Tierra, la gravedad vale 9,8 newtons por kilogramo.",
+         "En la Tierra, la gravedad vale nueve coma ocho niutons por kilogramo."),
         (3.2, "Una manzana de 0,2 kilos pesa 1,96 newtons.",
          "Una manzana de cero coma dos kilos pesa uno coma noventa y seis niutons.")]),
     (7.5, s_luna, [
-        (0.3, "En la Luna, la gravedad es solo 1,6.", "En la Luna, la gravedad es solo uno coma seis."),
+        (0.3, "En la Luna, la gravedad es solo 1,6 newtons por kilogramo.",
+         "En la Luna, la gravedad es solo uno coma seis niutons por kilogramo."),
         (3.2, "La misma manzana pesa 0,32 newtons.",
          "La misma manzana pesa cero coma treinta y dos niutons.")]),
     (3.5, s_misma, [
