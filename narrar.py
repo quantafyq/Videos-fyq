@@ -6,6 +6,9 @@ Lee los textos de narración (CAPS) del script del vídeo, sintetiza cada frase
 con una voz Piper (motor sherpa-onnx) y la coloca en el instante en que
 aparece su subtítulo. Después une el audio con el vídeo.
 
+Voces: Piper (--voz carpeta con el .onnx) o Kokoro (--voz carpeta de
+kokoro-multi-lang-v1_0, con --sid 53 para la voz «em_santa» y --tempo 1.2).
+
 Requisitos:
     pip install sherpa-onnx numpy
     Voz: https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-es_ES-davefx-medium.tar.bz2
@@ -65,26 +68,39 @@ def spoken(text):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("carpeta", choices=["colisiones", "estados", "oxisales", "sales_acidas", "oxidos", "masa_peso"])
-    ap.add_argument("--voz", required=True, help="carpeta de la voz Piper")
+    ap.add_argument("--voz", required=True, help="carpeta de la voz (Piper o Kokoro)")
     ap.add_argument("--velocidad", type=float, default=1.0)
+    ap.add_argument("--sid", type=int, default=0, help="número de voz (Kokoro: 53 = em_santa, 29 = em_alex, 28 = ef_dora)")
+    ap.add_argument("--tempo", type=float, default=1.0, help="acelera la voz sin cambiar el tono (p. ej. 1.2)")
     ap.add_argument("--medir", action="store_true",
                     help="solo mide cuánto dura cada frase y lo guarda en narracion.json")
     args = ap.parse_args()
 
     import sherpa_onnx
 
-    onnx = glob.glob(os.path.join(args.voz, "*.onnx"))[0]
-    cfg = sherpa_onnx.OfflineTtsConfig(
-        model=sherpa_onnx.OfflineTtsModelConfig(
+    v = args.voz
+    if os.path.exists(os.path.join(v, "voices.bin")):      # voz Kokoro
+        model = sherpa_onnx.OfflineTtsModelConfig(
+            kokoro=sherpa_onnx.OfflineTtsKokoroModelConfig(
+                model=os.path.join(v, "model.onnx"), voices=os.path.join(v, "voices.bin"),
+                tokens=os.path.join(v, "tokens.txt"), data_dir=os.path.join(v, "espeak-ng-data"),
+                dict_dir=os.path.join(v, "dict"), lexicon=os.path.join(v, "lexicon-us-en.txt"), lang="es"),
+            num_threads=4)
+    else:                                                  # voz Piper
+        model = sherpa_onnx.OfflineTtsModelConfig(
             vits=sherpa_onnx.OfflineTtsVitsModelConfig(
-                model=onnx,
-                tokens=os.path.join(args.voz, "tokens.txt"),
-                data_dir=os.path.join(args.voz, "espeak-ng-data"),
-            ),
-            num_threads=4,
-        ),
-    )
-    tts = sherpa_onnx.OfflineTts(cfg)
+                model=glob.glob(os.path.join(v, "*.onnx"))[0], tokens=os.path.join(v, "tokens.txt"),
+                data_dir=os.path.join(v, "espeak-ng-data")),
+            num_threads=4)
+    tts = sherpa_onnx.OfflineTts(sherpa_onnx.OfflineTtsConfig(model=model))
+
+    def acelerar(x, sr):
+        if abs(args.tempo - 1.0) < 0.01:
+            return x
+        r = subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-",
+                            "-af", f"atempo={args.tempo}", "-f", "f32le", "-"], input=x.tobytes(),
+                           stdout=subprocess.PIPE, check=True)
+        return np.frombuffer(r.stdout, dtype=np.float32)
 
     mod = load_module(args.carpeta)
     caps, total = mod.CAPS, mod.TOTAL
@@ -94,9 +110,10 @@ def main():
         t0, t1 = cap[0], cap[1]
         txt = cap[3] if len(cap) > 3 else cap[2]
         speed = args.velocidad
-        audio = tts.generate(spoken(txt), sid=0, speed=speed)
+        audio = tts.generate(spoken(txt), sid=args.sid, speed=speed)
         sr = audio.sample_rate
         samples = np.array(audio.samples, dtype=np.float32)
+        samples = acelerar(samples / max(1e-6, np.abs(samples).max()) * 0.9, sr)
         dur = len(samples) / sr
         clips.append((t0, samples, txt))
 

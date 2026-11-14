@@ -1,16 +1,16 @@
 # Peso y masa en un minuto (vídeo vertical, 1080×1920)
 
-Reel de 57 s con una manzana como protagonista. Pensado para 2.º de ESO (el curso
+Reel de 56 s con una manzana como protagonista. Pensado para 2.º de ESO (el curso
 no aparece en pantalla). Marca @quantafyq y barra de tiempo arriba.
 
-- `masa_peso_voz.mp4`: con narración sintética en español.
+- `masa_peso_voz.mp4`: con narración sintética en español (voz Kokoro «em_santa», acelerada un 20 %).
 - `masa_peso.mp4`: sin voz, con subtítulos incrustados.
 - `masa_peso.srt`: la narración como subtítulos.
 - `generar_video.py`: script del vídeo. El estilo está en `../comun/reel.py`.
 
 ```bash
 python3 generar_video.py                          # vídeo + .srt
-python3 ../narrar.py masa_peso --voz <carpeta>    # versión con voz
+python3 ../narrar.py masa_peso --voz <kokoro-multi-lang-v1_0> --sid 53 --tempo 1.2    # versión con voz
 ```
 
 ## Guion

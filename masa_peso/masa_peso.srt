@@ -3,58 +3,58 @@
 ¿Sabes cuál es la diferencia entre peso y masa?
 
 2
-00:00:03,600 --> 00:00:05,350
+00:00:03,600 --> 00:00:05,495
 Te lo cuento en un minuto.
 
 3
-00:00:05,800 --> 00:00:07,358
+00:00:05,945 --> 00:00:07,800
 Mira esta manzana.
 
 4
-00:00:07,358 --> 00:00:11,558
+00:00:07,800 --> 00:00:12,000
 La cantidad de manzana es la misma en la Tierra que en la Luna.
 
 5
-00:00:11,558 --> 00:00:14,908
+00:00:12,000 --> 00:00:15,350
 Eso es la masa, y se mide en kilogramos.
 
 6
-00:00:15,358 --> 00:00:20,258
+00:00:15,800 --> 00:00:20,700
 El peso es otra cosa: es la fuerza con la que el planeta tira de la manzana.
 
 7
-00:00:20,258 --> 00:00:22,408
+00:00:20,700 --> 00:00:22,850
 Se mide en newtons.
 
 8
-00:00:22,858 --> 00:00:26,908
+00:00:23,300 --> 00:00:27,350
 Se calcula así: P = m · g. Peso es igual a masa por gravedad.
 
 9
-00:00:27,358 --> 00:00:31,466
+00:00:27,800 --> 00:00:31,530
 En la Tierra, la gravedad vale 9,8 newtons por kilogramo.
 
 10
-00:00:31,466 --> 00:00:35,879
+00:00:31,530 --> 00:00:35,680
 Una manzana de 0,2 kilos pesa 1,96 newtons.
 
 11
-00:00:36,329 --> 00:00:40,510
+00:00:36,130 --> 00:00:39,820
 En la Luna, la gravedad es solo 1,6 newtons por kilogramo.
 
 12
-00:00:40,510 --> 00:00:44,660
+00:00:39,820 --> 00:00:43,970
 La misma manzana pesa 0,32 newtons.
 
 13
-00:00:45,110 --> 00:00:48,160
+00:00:44,420 --> 00:00:47,470
 Misma masa, distinto peso.
 
 14
-00:00:48,610 --> 00:00:51,906
+00:00:47,920 --> 00:00:51,120
 Recuerda: la masa no cambia; el peso, sí.
 
 15
-00:00:51,906 --> 00:00:54,256
+00:00:51,120 --> 00:00:53,470
 Peso es igual a masa por gravedad.
 
